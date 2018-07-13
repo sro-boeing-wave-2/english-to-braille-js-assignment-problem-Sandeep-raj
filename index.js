@@ -12,15 +12,9 @@ const set = new Map(englishToBrailleLiteralSet);
 
 function converter() {
   const str = document.getElementById('sourceLangText').value;
-  let res = '';
-  let i = 0;
-  for (i = 0; i < str.length; i += 1) {
-    res += set.get(str[i]);
-  }
+  let res = str.split('').map(s => set.get(s));
+  res = res.join('');
   document.getElementById('targetLangText').innerHTML = res;
 }
-
-window.onload = function () {
-  const btn = document.getElementById('btnConvertEnglishToBraille');
-  btn.addEventListener('click', converter);
-};
+const btn = document.getElementById('btnConvertEnglishToBraille');
+btn.addEventListener('click', converter);
